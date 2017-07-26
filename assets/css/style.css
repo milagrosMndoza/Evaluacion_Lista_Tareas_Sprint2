@@ -44,7 +44,7 @@ ol li:hover {
   background-color: #8AD7E1;
   padding: 20px 10px;
   color: #0C7CF3;
-  text-align: center;
+  text-align: left;
 }
 
 /* Clear floats after the header */
@@ -85,7 +85,7 @@ input {
   width: 20%;
   background: #31DB8B;
   color: #ECECEC;
-  float: left;
+  float: center;
   text-align: center;
   font-size: 16px;
   cursor: pointer;
