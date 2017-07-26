@@ -70,27 +70,33 @@ this.completed: completed
 
 this.info = document.getElementById('lista');
 datos.forEach(function(elemento){
-info.innerHTML += '<li id ="'+elemento.id+'">' + elemento.title + "</li>"; //Agrega las 10 primeras tareas a mi lista
+ var checked = "";
+    if(elemento.completed){
+        checked = "checked";
+    }
+    info.innerHTML += '<li><input type="checkbox" name="tarea" value="' + elemento.id + '" ' + checked + '>' + elemento.title + "</li>"; //Checklist a todas las tareas que son true
 }); 
-
 var agregarTarea = document.getElementById('agregarTarea');
 
 agregarTarea.onclick = function (){
 var nuevaTarea=document.getElementById("tareas").value;
   datos[datos.length] ={
-    "userId": i++,
-    "id": datos.length +1,
-    "title": tareas,
-    "completed": false
+    userId: i++,
+    id: datos.length +1,
+    title: nuevaTarea,
+    completed: false
   }
   if(tareas.value.length == "")
       alert("Debes ingresar una tarea");
   else{
       var listaLI=document.createElement("li");
       var textnode=document.createTextNode(nuevaTarea);
+      var input = document.createElement("input");
+      input.setAttribute("type", "checkbox");
+      listaLI.appendChild(input);
       listaLI.appendChild(textnode);
       document.getElementById("lista").appendChild(listaLI);
-    
+       
     }    
 
   tareas.value = "";
@@ -98,8 +104,11 @@ var nuevaTarea=document.getElementById("tareas").value;
 
 var tacharTarea = function(event){
     document.getElementById(event.target.id).style.textDecoration = "line-through";
+    console.log(event.target.id);
   };
 // Este evento tacha los elementos del array de mi lista
+  
+
   for (var i = 0; i < lista.children.length ; i++) {
     lista.children[i].addEventListener("click", tacharTarea);
   }
