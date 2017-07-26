@@ -66,47 +66,30 @@ function datos (){
  listaTareas.innerHTML= "" ;
  var nuevoHTML = "";
  datos.forEach(function (tarea){
- 	nuevoHTML += "<li>" + tarea.title + "</li>"
+  nuevoHTML += "<li>" + tarea.title + "</li>"
  });
-	listaTareas.innerHTml = nuevoHTML;
+  listaTareas.innerHTml = nuevoHTML;
 }
 
-var agregarTarea = document.getElementById('agregarTarea');
-agregarTarea.onclick = function () {
-var tarea = document.getElementById("tareas").value;
-datos.push(tarea);
-  
-  printHTML(mergeHTML());
-};
+var info = document.getElementById('lista');
+datos.forEach(function(elemento){
+    
+    
+info.innerHTML += '<li>' + elemento.title + "</li>"; //Agrega  todas las tareas a mi lista
+}); 
 
-function mergeHTML (){
-  var html = '';
-  for (i=0; i<datos.length; i++){
-    html += (i+1)+ " "+datos[i]+ "<br>";
-  }
-  return html;
-}
-
-//función que imprime una tarea luego de ingresarlo
-function printHTML (html){
-  //records.innerHTML = '';
-  tareas.value="";
-  lista.innerHTML = html;
-}
-
-var printAll = document.getElementById('print');
-function printAll() {
-  printHTML(mergeHTML());
-}
-
-/*
 var agregarTarea = document.getElementById('agregarTarea');
 agregarTarea.onclick = function (){
-  var nuevaTarea=document.getElementById("tarea").value;
-  var listaLI=document.createElement("li");
-  var textnode=document.createTextNode(nuevaTarea);
-  listaLI.appendChild(textnode);
-  document.getElementById("lista").appendChild(listaLI);
-        
-   tarea.value=""; 
-}*/
+
+  var nuevaTarea=document.getElementById("tareas").value;
+  if(tareas.value.length == "")
+      alert("Debes ingresar una tarea");
+  else{
+      var listaLI=document.createElement("li");
+      var textnode=document.createTextNode(nuevaTarea);
+      listaLI.appendChild(textnode);
+      document.getElementById("lista").appendChild(listaLI);
+    }    
+  tareas.value = "";
+}
+
