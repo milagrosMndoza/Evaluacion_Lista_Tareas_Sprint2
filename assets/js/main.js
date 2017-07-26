@@ -70,19 +70,19 @@ this.completed: completed
 
 this.info = document.getElementById('lista');
 datos.forEach(function(elemento){
-info.innerHTML += '<li>' + elemento.title + "</li>"; //Agrega las 10 primeras tareas a mi lista
+info.innerHTML += '<li id ="'+elemento.id+'">' + elemento.title + "</li>"; //Agrega las 10 primeras tareas a mi lista
 }); 
 
 var agregarTarea = document.getElementById('agregarTarea');
-agregarTarea.onclick = function (){
 
+agregarTarea.onclick = function (){
 var nuevaTarea=document.getElementById("tareas").value;
   datos[datos.length] ={
-  "userId": 1,
+    "userId": i++,
     "id": datos.length +1,
     "title": tareas,
-    "completed": true
-}
+    "completed": false
+  }
   if(tareas.value.length == "")
       alert("Debes ingresar una tarea");
   else{
@@ -96,14 +96,24 @@ var nuevaTarea=document.getElementById("tareas").value;
   tareas.value = "";
 }
 
+var tacharTarea = function(event){
+    document.getElementById(event.target.id).style.textDecoration = "line-through";
+  };
+// Este evento tacha los elementos del array de mi lista
+  for (var i = 0; i < lista.children.length ; i++) {
+    lista.children[i].addEventListener("click", tacharTarea);
+  }
+
+/*
+//Funcion Eliminar Tarea:
 var eliminarTarea = function(){
     this.parentNode.removeChild(this);
   };
-  // Borrando Elementos del array de mi lista
-  for (var i = 0; i < lista.children.length ; i++) {
-    lista.children[i].addEventListener("click", eliminarTarea);
-  }
 
+//Evento Borrando Elementos del array de mi lista
+  for (var i = 0; i <= lista.children.length -1; i++) {
+    lista.children[i].addEventListener("onclick", eliminarTarea);
+  }*/
 
 /*function info (){
  var listaTareas = document.getElementById("lista");
