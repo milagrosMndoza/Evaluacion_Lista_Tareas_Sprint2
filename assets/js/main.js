@@ -74,7 +74,7 @@ datos.forEach(function(elemento){
     if(elemento.completed){
         checked = "checked";
     }
-    info.innerHTML += '<li><input type="checkbox" name="tarea" value="' + elemento.id + '" ' + checked + '>' + elemento.title + "</li>"; //Checklist a todas las tareas que son true
+    info.innerHTML += '<li contenteditable="true"><input type="checkbox" name="tarea" value="' + elemento.id + '" ' + checked + '>' + elemento.title + "</li>"; //Checklist a todas las tareas que son true
 }); 
 var agregarTarea = document.getElementById('agregarTarea');
 
@@ -113,16 +113,18 @@ var tacharTarea = function(event){
     lista.children[i].addEventListener("click", tacharTarea);
   }
 
-/*
+
 //Funcion Eliminar Tarea:
-var eliminarTarea = function(){
-    this.parentNode.removeChild(this);
+var eliminar = document.getElementById('lista');
+eliminarTarea.onclick = function (){
+    this.parentNode.removeChild("li");
   };
+
 
 //Evento Borrando Elementos del array de mi lista
   for (var i = 0; i <= lista.children.length -1; i++) {
-    lista.children[i].addEventListener("onclick", eliminarTarea);
-  }*/
+    lista.children[i].addEventListener("eliminarTarea", eliminarTarea);
+  }
 
 /*function info (){
  var listaTareas = document.getElementById("lista");
