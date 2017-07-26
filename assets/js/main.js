@@ -61,27 +61,28 @@ var datos =
     "completed": true
   }];
 
-function datos (){
- var listaTareas = document.getElementById("lista-tareas");
- listaTareas.innerHTML= "" ;
- var nuevoHTML = "";
- datos.forEach(function (tarea){
-  nuevoHTML += "<li>" + tarea.title + "</li>"
- });
-  listaTareas.innerHTml = nuevoHTML;
-}
+/*var tareaObj = function(){
+this.userId: userId,
+this.id: id,
+this.title: title,
+this.completed: completed
+}*/
 
-var info = document.getElementById('lista');
+this.info = document.getElementById('lista');
 datos.forEach(function(elemento){
-    
-    
-info.innerHTML += '<li>' + elemento.title + "</li>"; //Agrega  todas las tareas a mi lista
+info.innerHTML += '<li>' + elemento.title + "</li>"; //Agrega las 10 primeras tareas a mi lista
 }); 
 
 var agregarTarea = document.getElementById('agregarTarea');
 agregarTarea.onclick = function (){
 
-  var nuevaTarea=document.getElementById("tareas").value;
+var nuevaTarea=document.getElementById("tareas").value;
+  datos[datos.length] ={
+  "userId": 1,
+    "id": datos.length +1,
+    "title": tareas,
+    "completed": true
+}
   if(tareas.value.length == "")
       alert("Debes ingresar una tarea");
   else{
@@ -89,7 +90,60 @@ agregarTarea.onclick = function (){
       var textnode=document.createTextNode(nuevaTarea);
       listaLI.appendChild(textnode);
       document.getElementById("lista").appendChild(listaLI);
+    
     }    
+
   tareas.value = "";
 }
+
+var eliminarTarea = function(){
+    this.parentNode.removeChild(this);
+  };
+  // Borrando Elementos del array de mi lista
+  for (var i = 0; i < lista.children.length ; i++) {
+    lista.children[i].addEventListener("click", eliminarTarea);
+  }
+
+
+/*function info (){
+ var listaTareas = document.getElementById("lista");
+ listaTareas.innerHTML= "" ;
+ var nuevoHTML = "";
+ datos.forEach(function (tarea){
+  nuevoHTML += "<li>" + tarea.title + "</li>"
+ });
+  listaTareas.innerHTml = nuevoHTML;
+}*/
+
+/*var agregarTarea = document.getElementById('agregarTarea');
+agregarTarea.onclick = function () {
+var tarea = document.getElementById("tareas").value;
+datos.push(tarea);
+  
+  printHTML(mergeHTML());
+};
+
+function mergeHTML (){
+  var html = '';
+  for (i=0; i<datos.length; i++){
+    html += (i+1)+ " "+datos[i]+ "<br>";
+  }
+  return html;
+}
+
+
+//función que imprime una tarea luego de ingresarlo
+function printHTML (html){
+  //records.innerHTML = '';
+  tareas.value="";
+  lista.innerHTML = html;
+}
+
+var printAll = document.getElementById('print');
+function printAll() {
+  printHTML(mergeHTML());
+}
+
+*/
+
 
